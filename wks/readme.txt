@@ -31,6 +31,7 @@ Testing with Vagrant:
 
 
 TODO:
+- ***important*** playbook.yaml fails with vagrant and linode, respectively when hosts: localhost and hosts:all
 - remove ansible-galaxy packages on cleanup
 - oh-my-zsh seems to be stuck on hosts with no sudo password
   - works when interaction with become passwd prompt is succesful
