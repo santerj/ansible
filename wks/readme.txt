@@ -1,4 +1,7 @@
-Install programs and configure shell+home with a little help from Ansible.
+Automate installation of useful programs and configuration of home directory + shell.
+Useful for fresh OS installations - familiar programs are installed and configured with minimal
+extra work!
+
 
 Requirements:
 - Fedora 33
@@ -20,7 +23,7 @@ All done!
 Testing with Vagrant:
   $ git clone https://github.com/santerj/ansible
   $ cd ansible/wks
-  $ git checkout devel
+  $ git checkout dev
   $ vagrant up
 
 

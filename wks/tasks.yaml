@@ -18,27 +18,28 @@
 - name: Install user packages with dnf
   dnf:
     name:
+      - bpytop
+      - curl
+      - ffmpeg
+      - ffmpeg
       - firefox
       - flatpak
-      - zsh
-      - vim
+      - git
+      - gzip
+      - less
+      - libvirt
       - ripgrep
       - ristretto
-      - gzip
-      - unzip
       - ruby
-      - whois
-      - wget
-      - curl
-      - less
-      - ffmpeg
       - speedtest-cli
-      - bpytop
-      - ffmpeg
       - tree
-      - xdg-user-dirs
-      - libvirt
+      - unzip
       - vagrant
+      - vim
+      - wget
+      - whois
+      - xdg-user-dirs
+      - zsh
     state: latest
   become: true
 
