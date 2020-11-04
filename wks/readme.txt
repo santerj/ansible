@@ -20,7 +20,7 @@ All done!
 Testing with Vagrant:
   $ git clone https://github.com/santerj/ansible
   $ cd ansible/wks
-  $ git checkout devel
+  $ git checkout dev
   $ vagrant up
 
 
