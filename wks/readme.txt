@@ -28,6 +28,9 @@ Testing with Vagrant:
 
 
 TODO:
+- remove ansible-galaxy packages on cleanup
+- oh-my-zsh seems to be stuck on hosts with no sudo password
+  - works when interaction with become passwd prompt is succesful
 - update PATH to include ~/bin
 - set editor as vim
 - enable correction in oh-my-zsh
