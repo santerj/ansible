@@ -31,6 +31,7 @@ TODO:
 - update PATH to include ~/bin
 - set editor as vim
 - enable correction in oh-my-zsh
+- dnf install fedora-workstation-repositories  (https://fedoraproject.org/wiki/Workstation/Third_Party_Software_Repositories)
 - git config
 - dl+mv icon pack, font
 - wget vscode + do dnf install
