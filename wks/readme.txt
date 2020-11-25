@@ -40,6 +40,7 @@ automate this piece of tunketing for vagrant:
 
 - open firewalld for kdeconnect?
 - install conda? (regarding .zshrc)
+  - ~/bin/conda -> ~/anaconda3/bin/conda SYMLINK!!
 - install google cloud cli?
 
 automate motd (maybe better for server playbook)
