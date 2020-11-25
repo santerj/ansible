@@ -36,6 +36,7 @@ TODO:
 - dl+mv icon pack, font
 - wget vscode + do dnf install
 - open firewalld for kdeconnect?
+- install conda? (regarding .zshrc)
 - automate this piece of tunketing for vagrant:
   - dnf install qemu-kvm libvirt libquestfs-tools virt-install rsync vagrant
   - systemctl enable --now libvirtd
