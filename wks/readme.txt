@@ -29,7 +29,7 @@ Testing with Vagrant:
 
 TODO:
 - dnf install figlet
-  - echo figlet $(hostname) > /etc/motd
+  - sudo bash -c  "figlet $(hostname) > /etc/motd"
 - automate .zshrc
 - dnf install fedora-workstation-repositories  (https://fedoraproject.org/wiki/Workstation/Third_Party_Software_Repositories)
 - git config (email)
