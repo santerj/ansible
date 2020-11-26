@@ -6,6 +6,7 @@ TODO:
 - create wheel & ensure passwordless sudo
 - add user to sudo
 - install figlet, create hostname motd, uninstall figlet
+- install .zshrc
 
 - update packages
 - install bpytop
