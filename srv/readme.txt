@@ -1,14 +1,29 @@
-TODO:
-(create user rpm package?)
-- useradd santeri, set password from vault
-- install rsa.pub in ~/.ssh/authorized_keys & chown santeri:santeri & chmod 644
-- mod /etc/ssh/sshd_config - disable root login, enable passwordless login
-- create wheel & ensure passwordless sudo
-- add user to sudo
-- install figlet, create hostname motd, uninstall figlet
-- install .zshrc
+Freshly installed Linux again - but now I have to install all my packages and configurations again...
+No! Just use this Ansible playbook as an "extra step" after the actual OS installation to automate installation
+of all the familiar packages and configurations. Supports the latest Fedora version (hopefully).
 
-- update packages
-- install bpytop
-- install docker/podman
-- ensure docker/podman on boot
+Also provided is a Vagrantfile (https://www.vagrantup.com/) to automate the testing part (Ansible currently lacks a no-op mode).
+
+-----
+
+Requirements:
+- Fedora 33
+- non-root user with sudo permissions
+- git
+
+
+Installation:
+  $ git clone https://github.com/santerj/tilde
+  $ /bin/sh tilde/ansible/bootstrap.sh
+
+
+All done!
+
+
+
+-----
+
+Testing with Vagrant:
+  $ git clone https://github.com/santerj/ansible
+  $ cd ansible/wks
+  $ vagrant up
