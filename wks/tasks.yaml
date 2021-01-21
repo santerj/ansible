@@ -21,7 +21,6 @@
       - bpytop
       - curl
       - ffmpeg
-      - ffmpeg
       - firefox
       - flatpak
       - git
