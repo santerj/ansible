@@ -1,0 +1,10 @@
+---
+vagrant_dependencies:
+  - libvirt
+  - libquestfs-tools
+  - qemu-kvm
+  - rsync
+  - vagrant
+  - virt-install
+
+miniconda_url: "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
