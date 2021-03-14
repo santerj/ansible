@@ -1,0 +1,41 @@
+---
+- name: Enable RPM Fusion repositories
+  dnf:
+    name: "{{ rpmfusion_repos }}"
+    state: present
+    disable_gpg_check: yes
+  become: true
+
+- name: dnf upgrade
+  dnf:
+    name: "*"
+    state: latest
+  become: true
+
+- name: Install VS Code
+  dnf:
+    name: "{{ vscode_url }}"
+    state: present
+    disable_gpg_check: yes
+
+- name: Install packages with dnf
+  dnf:
+    name: "{{ dnf_packages }}"
+    state: latest
+
+- name: Add flathub repo
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: "{{ flatpakrepo_url }}"
+    method: user
+
+- name: Install flatpak programs
+  community.general.flatpak:
+    name:  "{{ flatpak_packages }}"
+    method: user
+
+- name: dnf autoremove
+  dnf:
+    autoremove: yes
+  become: true

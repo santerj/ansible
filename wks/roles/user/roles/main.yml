@@ -1,0 +1,115 @@
+- name: Ensure that wheel group exists
+  group:
+    name: wheel
+    state: present
+  become: true
+
+- name: Ensure nopasswd for wheel
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+  become: true
+
+- name: Get current login name
+  shell: whoami
+  register: host_username
+
+- name: Set user home dir as fact
+  set_fact:
+    home_path: "/home/{{ host_username.stdout }}"
+
+- name: Add user to wheel and change shell to zsh
+  user:
+    name: "{{ host_username.stdout }}"
+    shell: /bin/zsh
+    groups: wheel
+    append: yes
+    create_home: yes
+  become: true
+
+# todo: replace long lines with home_path
+
+- name: Ensure home directory has correct permissions
+  file:
+    path: '/home/{{ host_username.stdout }}/'
+    state: directory
+    mode: '0700'
+    owner: '{{ host_username.stdout }}'
+    group: '{{ host_username.stdout }}'
+  become: true
+
+# todo: backup existing home dir before removal
+
+- name: Remove default home directories
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /home/{{ host_username.stdout }}/Desktop
+    - /home/{{ host_username.stdout }}/Downloads
+    - /home/{{ host_username.stdout }}/Templates
+    - /home/{{ host_username.stdout }}/Public
+    - /home/{{ host_username.stdout }}/Documents
+    - /home/{{ host_username.stdout }}/Music
+    - /home/{{ host_username.stdout }}/Pictures
+    - /home/{{ host_username.stdout }}/Videos
+
+- name: Create new home directories
+  file:
+    path:  "{{item }}"
+    state: directory
+    owner: "{{ host_username.stdout }}"
+    mode: '0755'
+  loop:
+    - /home/{{ host_username.stdout }}/bin
+    - /home/{{ host_username.stdout }}/etc
+    - /home/{{ host_username.stdout }}/dl
+    - /home/{{ host_username.stdout }}/tmp
+    - /home/{{ host_username.stdout }}/prg
+    - /home/{{ host_username.stdout }}/img
+    - /home/{{ host_username.stdout }}/etc/desktop
+    - /home/{{ host_username.stdout }}/etc/template
+    - /home/{{ host_username.stdout }}/etc/public
+    - /home/{{ host_username.stdout }}/etc/documents
+    - /home/{{ host_username.stdout }}/etc/music
+    - /home/{{ host_username.stdout }}/etc/videos
+    - /home/{{ host_username.stdout }}/.config
+
+- name: Look for default xdg-user-dirs config file
+  stat:
+    path: /home/{{ host_username.stdout }}/.config/user-dirs.dirs
+  register: userdirs_result
+
+- name: Backup default xdg-user-dirs config file
+  command: mv /home/{{ host_username.stdout }}/.config/user-dirs.dirs /home/{{ host_username.stdout }}/.config/user-dirs.dirs.old
+  when: userdirs_result.stat.exists
+
+- name: Create personal xdg-user-dirs conf file
+  file:
+    path: /home/{{ host_username.stdout }}/.config/user-dirs.dirs
+    state: touch
+    mode: '600'
+
+- name: Input custom xdg-user-dirs confgurations
+  blockinfile:
+    path: /home/{{ host_username.stdout }}/.config/user-dirs.dirs
+    block: |
+      XDG_DOWNLOAD_DIR="$HOME/dl"
+      XDG_PICTURES_DIR="$HOME/img"
+      XDG_DESKTOP_DIR="$HOME/etc/desktop"
+      XDG_TEMPLATES_DIR="$HOME/etc/template"
+      XDG_PUBLICSHARE_DIR="$HOME/etc/public"
+      XDG_DOCUMENTS_DIR="$HOME/etc/docs"
+      XDG_MUSIC_DIR="$HOME/etc/music"
+      XDG_VIDEOS_DIR="$HOME/etc/vid"
+
+- name: Install .zshrc config file
+  copy:
+    src: .zshrc
+    dest: home_path/.zshrc
+    owner: {{ host_username.stdout }}
+    group: {{ host_username.stdout }}
+    mode: 0644
