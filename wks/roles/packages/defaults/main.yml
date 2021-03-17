@@ -17,6 +17,7 @@ dnf_packages:
   - speedtest-cli
   - tree
   - unzip
+  - vim
   - wget
   - whois
   - xdg-user-dirs
