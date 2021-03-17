@@ -9,6 +9,7 @@ dnf_packages:
   - git
   - gzip
   - less
+  - ncdu
   - micro
   - ripgrep
   - ristretto
