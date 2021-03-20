@@ -1,5 +1,6 @@
 ---
 dnf_packages:
+  - bat
   - bpytop
   - curl
   - fedora-workstation-repositories
