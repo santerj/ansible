@@ -1,4 +1,9 @@
 ---
+general_dev_packages:
+  - gcc
+  - golang
+  - ncurses-devel
+
 vagrant_dependencies:
   - libvirt
   - libquestfs-tools
