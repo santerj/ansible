@@ -2,7 +2,9 @@
 general_dev_packages:
   - gcc
   - golang
+  - lxc
   - ncurses-devel
+  - podman
 
 vagrant_dependencies:
   - libvirt
