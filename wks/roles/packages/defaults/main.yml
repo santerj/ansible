@@ -10,6 +10,7 @@ dnf_packages:
   - flatpak
   - git
   - gzip
+  - httpie
   - less
   - ncdu
   - micro
