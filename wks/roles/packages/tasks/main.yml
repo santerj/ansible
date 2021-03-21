@@ -18,6 +18,11 @@
     state: present
     disable_gpg_check: yes
 
+- name: Remove unnecessary packages with dnf
+  dnf:
+    name: "{{ dnf_unnecessary }}"
+    state: absent
+
 - name: Install packages with dnf
   dnf:
     name: "{{ dnf_packages }}"
