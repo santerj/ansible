@@ -3,6 +3,7 @@ dnf_packages:
   - bat
   - bpytop
   - curl
+  - catimg
   - fedora-workstation-repositories
   - ffmpeg
   - firefox
@@ -13,7 +14,6 @@ dnf_packages:
   - ncdu
   - micro
   - ripgrep
-  - ristretto
   - rsync
   - speedtest-cli
   - tree
@@ -26,6 +26,17 @@ dnf_packages:
   - zathura-pdf-mupdf
   - zsh
   - zsh-syntax-highlighting
+
+dnf_unnecessary:
+  - hexchat
+  - pidgin
+  - shotwell
+  - thunderbird
+  - transmission
+  - w3m
+  - xawtv
+  - xfburn
+  - xreader
 
 flatpak_packages:
   - com.spotify.Client
