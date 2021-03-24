@@ -18,6 +18,7 @@ dnf_packages:
   - rsync
   - speedtest-cli
   - tree
+  - ulauncher
   - unzip
   - vim
   - wget
