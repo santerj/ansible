@@ -17,6 +17,7 @@ dnf_packages:
   - ripgrep
   - rsync
   - speedtest-cli
+  - task
   - tree
   - ulauncher
   - unzip
@@ -24,12 +25,13 @@ dnf_packages:
   - wget
   - whois
   - xdg-user-dirs
+  - youtube-dl
   - zathura
   - zathura-pdf-mupdf
   - zsh
   - zsh-syntax-highlighting
 
-dnf_unnecessary:
+dnf_absent:
   - hexchat
   - pidgin
   - shotwell
