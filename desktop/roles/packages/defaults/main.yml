@@ -11,6 +11,7 @@ dnf_packages:
   - gzip
   - httpie
   - less
+  - liveusb-creator
   - ncdu
   - mailspring
   - micro
