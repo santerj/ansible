@@ -1,5 +1,6 @@
 ---
 dnf_packages:
+  - ansible
   - bpytop
   - curl
   - catimg
