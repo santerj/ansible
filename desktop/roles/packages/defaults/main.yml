@@ -17,6 +17,7 @@ dnf_packages:
   - mailspring
   - micro
   - ranger
+  - rclone
   - ripgrep
   - rsync
   - speedtest-cli
@@ -34,17 +35,6 @@ dnf_packages:
   - zathura-pdf-mupdf
   - zsh
   - zsh-syntax-highlighting
-
-dnf_absent:
-  - hexchat
-  - pidgin
-  - shotwell
-  - thunderbird
-  - transmission
-  - w3m
-  - xawtv
-  - xfburn
-  - xreader
 
 flatpak_packages:
   - com.spotify.Client
