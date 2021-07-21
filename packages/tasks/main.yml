@@ -1,0 +1,37 @@
+---
+- name: install layered packages
+  shell:
+    cmd: "rpm-ostree install {{ item }}"
+  loop:
+    - {{ rpm-ostree_packages }}
+
+- name: create toolboxes
+  shell:
+    cmd: "toolbox -y create {{ item }}"
+  loop:
+    - main
+    - conda
+
+- name: run dnf update inside toolboxes
+  shell:
+    cmd: "toolbox run -c {{ item }} sudo dnf update -y"
+  loop:
+    - main
+    - conda
+
+- name: install dnf packages inside toolbox
+  shell:
+    cmd: "toolbox run -c main sudo dnf install -y {{ item }}"
+  loop: "{{ dnf_packages }}"
+
+- name: install miniconda inside toolbox
+
+- name: install flathub repo
+
+- name: install flatpak packages
+
+
+kokeillaan niin että zsh on non layered ja bashrc on
+[ ! -z "$PS1" ] && exec /usr/bin/zsh
+mutta niin että hostname==toolbox tai jotain
+ja zsh ja syntax jutut on vaan toolboxissa

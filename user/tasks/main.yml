@@ -1,0 +1,14 @@
+- name: ensure that user is present
+  user:
+    state: present
+    name: {{ username }}
+    comment: {{ gecos }}
+    groups: {{ groups }}
+    shell: {{ shell }}
+    append: yes
+
+- name: remake home directory
+
+- name: set .ssh directory permissions
+
+- name: move config files
