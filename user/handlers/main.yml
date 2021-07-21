@@ -1,0 +1,4 @@
+---
+- name: run xdg-user-dirs-update
+  shell:
+    cmd: xdg-user-dirs-update

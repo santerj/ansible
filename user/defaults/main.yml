@@ -1,0 +1,25 @@
+username: santeri
+gecos: santeri
+groups: wheel
+
+home_present:
+  - .config
+  - .ssh
+  - bin
+  - dl
+  - etc
+  - etc/desktop
+  - etc/documents
+  - img
+  - repos
+  - temp
+
+home_absent:
+  - Desktop
+  - Documents
+  - Downloads
+  - Music
+  - Pictures
+  - Public
+  - Templates
+  - Videos
