@@ -5,18 +5,18 @@
     state: present
   become: true
 
-- name: create toolbox
-  shell:
-    cmd: "toolbox -y create main"
-
-- name: run dnf update inside toolbox
-  shell:
-    cmd: "toolbox run -c main sudo dnf update -y"
-
-- name: install dnf packages inside toolbox
-  shell:
-    cmd: "toolbox run -c main sudo dnf install -y {{ item }}"
-  loop: "{{ dnf_packages }}"
+#- name: create toolbox
+#  shell:
+#    cmd: "toolbox -y create main"
+#
+#- name: run dnf update inside toolbox
+#  shell:
+#    cmd: "toolbox run -c main sudo dnf update -y"
+#
+#- name: install dnf packages inside toolbox
+#  shell:
+#    cmd: "toolbox run -c main sudo dnf install -y {{ item }}"
+#  loop: "{{ dnf_packages }}"
 
 - name: Add flathub repo
   community.general.flatpak_remote:
