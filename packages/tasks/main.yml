@@ -4,35 +4,29 @@
     cmd: "rpm-ostree install {{ item }}"
   loop:
     - {{ rpm-ostree_packages }}
+  become: true
 
-- name: create toolboxes
+- name: create toolbox
   shell:
-    cmd: "toolbox -y create {{ item }}"
-  loop:
-    - main
-    - conda
+    cmd: toolbox -y create main
 
-- name: run dnf update inside toolboxes
+- name: run dnf update inside toolbox
   shell:
-    cmd: "toolbox run -c {{ item }} sudo dnf update -y"
-  loop:
-    - main
-    - conda
+    cmd: toolbox run -c main sudo dnf update -y
 
 - name: install dnf packages inside toolbox
   shell:
     cmd: "toolbox run -c main sudo dnf install -y {{ item }}"
   loop: "{{ dnf_packages }}"
 
-- name: install miniconda inside toolbox
+- name: Add flathub repo
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: "{{ flathub_url }}"
+    method: user
 
-- name: install flathub repo
-
-- name: install flatpak packages
-
-
-
-kokeillaan niin että zsh on non layered ja bashrc on
-[ ! -z "$PS1" ] && exec /usr/bin/zsh
-mutta niin että hostname==toolbox tai jotain
-ja zsh ja syntax jutut on vaan toolboxissa
+- name: Install flatpak programs
+  community.general.flatpak:
+    name:  "{{ flatpak_packages }}"
+    method: user
