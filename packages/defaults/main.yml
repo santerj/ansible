@@ -34,7 +34,7 @@ flatpak_packages:
   - com.spotify.Client
   - com.visualstudio.code
   - org.fedoraproject.MediaWriter
-  - org.freedesktop.Platform.ffmpeg-full
+#  - org.freedesktop.Platform.ffmpeg-full
   - org.mozilla.firefox
   - org.telegram.desktop
 
