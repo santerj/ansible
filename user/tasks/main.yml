@@ -35,7 +35,7 @@
 - name: create id_rsa
   file:
     path: "{{ home_prefix }}/{{ username }}/.ssh/id_rsa"
-    state: file
+    state: touch
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: "0600"
@@ -43,7 +43,7 @@
 - name: create id_rsa.pub
   file:
     path: "{{ home_prefix }}/{{ username }}/.ssh/id_rsa.pub"
-    state: file
+    state: touch
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: "0700"
@@ -86,7 +86,7 @@
 
 - name: copy user-dirs.dirs
   copy:
-    src: .user-dirs.dirs
+    src: user-dirs.dirs
     dest: "{{ home_prefix }}/{{ username }}/.config/user-dirs.dirs"
     owner: "{{ username }}"
     group: "{{ username }}"
