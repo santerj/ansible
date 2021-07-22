@@ -1,6 +1,7 @@
 ---
-rpm-ostree_packages:
+rpm_ostree_packages:
   - borgbackup
+  - gnome-extensions-app
   - gnome-shell-extension-gsconnect
   - gnome-tweaks
   - gparted

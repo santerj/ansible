@@ -3,6 +3,6 @@ hostname: sf
 
 firewalld_default_zone: FedoraWorkstation
 
+# as of now, there is no sane way to declare multiple values here
 firewalld_services_enable: "kdeconnect"
-
 firewalld_services_disable: "ssh"
