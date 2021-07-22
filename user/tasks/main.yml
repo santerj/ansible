@@ -51,7 +51,7 @@
 - name: copy .bash_profile
   copy:
     src: .bash_profile
-    dest: {{ home_prefix }}/{{ username }}/.bash_profile
+    dest: "{{ home_prefix }}/{{ username }}/.bash_profile"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: "0755"
@@ -77,7 +77,7 @@
 
 - name: copy .zshrc
   copy:
-    src: .bash_profile
+    src: .zshrc
     dest: "{{ home_prefix }}/{{ username }}/.zshrc"
     owner: "{{ username }}"
     group: "{{ username }}"
@@ -86,7 +86,7 @@
 
 - name: copy user-dirs.dirs
   copy:
-    src: .bash_profile
+    src: .user-dirs.dirs
     dest: "{{ home_prefix }}/{{ username }}/.config/user-dirs.dirs"
     owner: "{{ username }}"
     group: "{{ username }}"
