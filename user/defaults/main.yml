@@ -1,6 +1,6 @@
 username: santeri
 gecos: santeri
-groups: wheel
+user_groups: wheel
 shell: /bin/bash
 home_prefix: /var/home
 
