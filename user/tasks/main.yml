@@ -23,7 +23,6 @@
     mode: "0755"
   loop:
     - {{ home_present }}
-  notify: run xdg-user-dirs-update
 
 - name: create .ssh directory
   file:
@@ -49,4 +48,48 @@
     group: {{ username }}
     mode: "0700"
 
-- name: move config files
+- name: copy .bash_profile
+  copy:
+    src: .bash_profile
+    dest: {{ home_prefix }}/{{ username }}/.bash_profile
+    owner: {{ username }}
+    group: {{ username }}
+    mode: "0755"
+    backup: yes
+
+- name: copy .bashrc
+  copy:
+    src: .bashrc
+    dest: {{ home_prefix }}/{{ username }}/.bashrc
+    owner: {{ username }}
+    group: {{ username }}
+    mode: "0755"
+    backup: yes
+
+- name: copy .vimrc
+  copy:
+    src: .vimrc
+    dest: {{ home_prefix }}/{{ username }}/.vimrc
+    owner: {{ username }}
+    group: {{ username }}
+    mode: "0755"
+    backup: yes
+
+- name: copy .zshrc
+  copy:
+    src: .bash_profile
+    dest: {{ home_prefix }}/{{ username }}/.zshrc
+    owner: {{ username }}
+    group: {{ username }}
+    mode: "0755"
+    backup: yes
+
+- name: copy user-dirs.dirs
+  copy:
+    src: .bash_profile
+    dest: {{ home_prefix }}/{{ username }}/.config/user-dirs.dirs
+    owner: {{ username }}
+    group: {{ username }}
+    mode: "0755"
+    backup: yes
+  notify: run xdg-user-dirs-update
