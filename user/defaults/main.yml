@@ -1,10 +1,10 @@
 username: santeri
 gecos: santeri
 groups: wheel
+shell: /bin/bash
+home_prefix: /var/home
 
 home_present:
-  - .config
-  - .ssh
   - bin
   - dl
   - etc
