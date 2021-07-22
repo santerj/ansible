@@ -1,15 +1,11 @@
 ---
 rpm-ostree_packages:
   - borgbackup
-  - ffmpeg
   - gnome-extensions
   - gnome-shell-extension-gsconnect
   - gnome-tweaks
   - gparted
   - nautilus-python
-  - vim
-  - zsh
-  - zsh-syntax-highlighting
 
 dnf_packages:
   - ansible
@@ -33,14 +29,15 @@ dnf_packages:
   - zsh-syntax-highlighting
 
 flatpak_packages:
-  - firefox
-  - telegram
-  - spofity
-  - discord
-  - fedora media writer
+  - com.discordapp.Discord
+  - com.spotify.Client
+  - org.fedoraproject.MediaWriter
   - org.freedesktop.Platform.ffmpeg-full
+  - org.mozilla.firefox
+  - org.telegram.desktop
 
-unknown_legacy_packages:
+unknown_packages:
+  - ffmpeg
   - fedora-workstation-repositories
   - zathura
   - zathura-pdf-mupdf
