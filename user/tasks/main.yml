@@ -3,7 +3,7 @@
     state: present
     name: "{{ username }}"
     comment: "{{ gecos }}"
-    groups: "{{ groups }}"
+    groups: "{{ user_groups }}"
     shell: "{{ shell }}"
     append: yes
 
