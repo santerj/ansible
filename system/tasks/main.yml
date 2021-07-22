@@ -32,8 +32,8 @@
   become: true
 
 - name: disable firewalld services
-  # done via shell as ansible.posix.firewalld
-  # requires installation of python bindings
+  # TODO: use ansible.posix.firewalld
+  # bindings are there on silverblue 34
   shell: "firewall-cmd  --permanent --remove-service={{ firewalld_services_disable }}"
   become: true
 
