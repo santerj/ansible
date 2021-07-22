@@ -14,5 +14,35 @@
   become: true
 
 - name: disable sshd
+  systemd:
+    name: sshd
+    state: stopped
+    enabled: no
+  become: true
 
-- name: configure firewall
+- name: enable SELinux
+  ansible.posix.selinux:
+    policy: targeted
+    state: enforcing
+  become: true
+
+- name: disable firewalld services
+  # done via shell as ansible.posix.firewalld
+  # requires installation of python bindings
+  shell: "firewall-cmd  --permanent --remove-service={{ item }}"
+  loop:
+    - {{ firewalld_services_disable }}
+  become: true
+
+- name: enable firewalld services
+  shell: "firewall-cmd  --permanent --add-service={{ item }}"
+  loop:
+    - {{ firewalld_services_enable }}
+  become: true
+
+- name: restart firewalld
+  systemd:
+    name: firewalld
+    state: restarted
+    enabled: yes
+  become: true

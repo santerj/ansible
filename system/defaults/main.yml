@@ -1,0 +1,8 @@
+---
+firewalld_default_zone: FedoraWorkstation
+
+firewalld_services_enable:
+  - kdeconnect
+
+firewalld_services_disable:
+  - ssh
