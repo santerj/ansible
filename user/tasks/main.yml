@@ -1,10 +1,10 @@
 - name: ensure that user is present and has right groups
   user:
     state: present
-    name: {{ username }}
-    comment: {{ gecos }}
-    groups: {{ groups }}
-    shell: {{ shell }}
+    name: "{{ username }}"
+    comment: "{{ gecos }}"
+    groups: "{{ groups }}"
+    shell: "{{ shell }}"
     append: yes
 
 - name: remove default home directories
@@ -12,84 +12,84 @@
     path: "{{ home_prefix }}/{{ username }}/{{ item }}"
     state: absent
   loop:
-    - {{ home_absent }}
+    - "{{ home_absent }}"
 
 - name: create new home directories
   file:
     path: "{{ home_prefix }}/{{ username }}/{{ item }}"
     state: directory
     owner: "{{ username }}"
-    group:  {{ username }}
+    group:  "{{ username }}"
     mode: "0755"
   loop:
-    - {{ home_present }}
+    - "{{ home_present }}"
 
 - name: create .ssh directory
   file:
     path: "{{ home_prefix }}/{{ username }}/.ssh"
     state: directory
-    owner: {{ username }}
-    group: {{ username }}
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: "0700"
 
 - name: create id_rsa
   file:
     path: "{{ home_prefix }}/{{ username }}/.ssh/id_rsa"
     state: file
-    owner: {{ username }}
-    group: {{ username }}
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: "0600"
 
 - name: create id_rsa.pub
   file:
     path: "{{ home_prefix }}/{{ username }}/.ssh/id_rsa.pub"
     state: file
-    owner: {{ username }}
-    group: {{ username }}
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: "0700"
 
 - name: copy .bash_profile
   copy:
     src: .bash_profile
     dest: {{ home_prefix }}/{{ username }}/.bash_profile
-    owner: {{ username }}
-    group: {{ username }}
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: "0755"
     backup: yes
 
 - name: copy .bashrc
   copy:
     src: .bashrc
-    dest: {{ home_prefix }}/{{ username }}/.bashrc
-    owner: {{ username }}
-    group: {{ username }}
+    dest: "{{ home_prefix }}/{{ username }}/.bashrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: "0755"
     backup: yes
 
 - name: copy .vimrc
   copy:
     src: .vimrc
-    dest: {{ home_prefix }}/{{ username }}/.vimrc
-    owner: {{ username }}
-    group: {{ username }}
+    dest: "{{ home_prefix }}/{{ username }}/.vimrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: "0755"
     backup: yes
 
 - name: copy .zshrc
   copy:
     src: .bash_profile
-    dest: {{ home_prefix }}/{{ username }}/.zshrc
-    owner: {{ username }}
-    group: {{ username }}
+    dest: "{{ home_prefix }}/{{ username }}/.zshrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: "0755"
     backup: yes
 
 - name: copy user-dirs.dirs
   copy:
     src: .bash_profile
-    dest: {{ home_prefix }}/{{ username }}/.config/user-dirs.dirs
-    owner: {{ username }}
-    group: {{ username }}
+    dest: "{{ home_prefix }}/{{ username }}/.config/user-dirs.dirs"
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: "0755"
     backup: yes
   notify: run xdg-user-dirs-update

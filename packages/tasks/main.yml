@@ -1,18 +1,17 @@
 ---
 - name: install layered packages
-  shell:
-    cmd: "rpm-ostree install {{ item }}"
-  loop:
-    - {{ rpm-ostree_packages }}
+  community.general.rpm_ostree_pkg:
+    name: "{{ rpm_ostree_packages }}"
+    state: present
   become: true
 
 - name: create toolbox
   shell:
-    cmd: toolbox -y create main
+    cmd: "toolbox -y create main"
 
 - name: run dnf update inside toolbox
   shell:
-    cmd: toolbox run -c main sudo dnf update -y
+    cmd: "toolbox run -c main sudo dnf update -y"
 
 - name: install dnf packages inside toolbox
   shell:
