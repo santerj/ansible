@@ -1,4 +1,6 @@
 ---
+hostname: sf
+
 firewalld_default_zone: FedoraWorkstation
 
 firewalld_services_enable:
