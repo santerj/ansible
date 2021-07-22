@@ -1,6 +1,6 @@
 - name: set hostname
   hostname:
-    name: {{ hostname }}
+    name: "{{ hostname }}"
     use: systemd  
 
 - name: ensure that wheel group exists
@@ -36,14 +36,14 @@
   # requires installation of python bindings
   shell: "firewall-cmd  --permanent --remove-service={{ item }}"
   loop:
-    - {{ firewalld_services_disable }}
+    - "{{ firewalld_services_disable }}"
   become: true
 
-- name: enable firewalld services
-  shell: "firewall-cmd  --permanent --add-service={{ item }}"
-  loop:
-    - {{ firewalld_services_enable }}
-  become: true
+#- name: enable firewalld services
+#  shell: "firewall-cmd  --permanent --add-service={{ item }}"
+#  loop:
+#    - "{{ firewalld_services_enable }}"
+#  become: true
 
 - name: restart firewalld
   systemd:
