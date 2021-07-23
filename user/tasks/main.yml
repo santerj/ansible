@@ -9,24 +9,22 @@
 
 - name: remove default home directories
   file:
-    path: "{{ home_prefix }}/{{ username }}/{{ item }}"
+    path: "/home/{{ username }}/{{ item }}"
     state: absent
-  loop:
-    - "{{ home_absent }}"
+  loop: "{{ home_absent }}"
 
 - name: create new home directories
   file:
-    path: "{{ home_prefix }}/{{ username }}/{{ item }}"
+    path: "/home/{{ username }}/{{ item }}"
     state: directory
     owner: "{{ username }}"
     group:  "{{ username }}"
     mode: "0755"
-  loop:
-    - "{{ home_present }}"
+  loop: "{{ home_present }}"
 
 - name: create .ssh directory
   file:
-    path: "{{ home_prefix }}/{{ username }}/.ssh"
+    path: "/home/{{ username }}/.ssh"
     state: directory
     owner: "{{ username }}"
     group: "{{ username }}"
@@ -34,7 +32,7 @@
 
 - name: create id_rsa
   file:
-    path: "{{ home_prefix }}/{{ username }}/.ssh/id_rsa"
+    path: "/home/{{ username }}/.ssh/id_rsa"
     state: touch
     owner: "{{ username }}"
     group: "{{ username }}"
@@ -42,7 +40,7 @@
 
 - name: create id_rsa.pub
   file:
-    path: "{{ home_prefix }}/{{ username }}/.ssh/id_rsa.pub"
+    path: "/home/{{ username }}/.ssh/id_rsa.pub"
     state: touch
     owner: "{{ username }}"
     group: "{{ username }}"
@@ -51,7 +49,7 @@
 - name: copy .bash_profile
   copy:
     src: .bash_profile
-    dest: "{{ home_prefix }}/{{ username }}/.bash_profile"
+    dest: "/home/{{ username }}/.bash_profile"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: "0755"
@@ -60,7 +58,7 @@
 - name: copy .bashrc
   copy:
     src: .bashrc
-    dest: "{{ home_prefix }}/{{ username }}/.bashrc"
+    dest: "/home/{{ username }}/.bashrc"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: "0755"
@@ -69,7 +67,7 @@
 - name: copy .vimrc
   copy:
     src: .vimrc
-    dest: "{{ home_prefix }}/{{ username }}/.vimrc"
+    dest: "/home/{{ username }}/.vimrc"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: "0755"
@@ -78,7 +76,7 @@
 - name: copy .zshrc
   copy:
     src: .zshrc
-    dest: "{{ home_prefix }}/{{ username }}/.zshrc"
+    dest: "/home/{{ username }}/.zshrc"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: "0755"
@@ -87,7 +85,7 @@
 - name: copy user-dirs.dirs
   copy:
     src: user-dirs.dirs
-    dest: "{{ home_prefix }}/{{ username }}/.config/user-dirs.dirs"
+    dest: "/home/{{ username }}/.config/user-dirs.dirs"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: "0755"

@@ -3,6 +3,7 @@ rpm_ostree_packages:
   - borgbackup
   - gnome-extensions-app
   - gnome-shell-extension-gsconnect
+  - gnome-shell-extension-user-theme
   - gnome-tweaks
   - gparted
   - nautilus-python
@@ -17,6 +18,7 @@ dnf_packages:
   - go
   - gzip
   - less
+  - make
   - ripgrep
   - rsync
   - speedtest-cli
@@ -34,7 +36,8 @@ flatpak_packages:
   - com.spotify.Client
   - com.visualstudio.code
   - org.fedoraproject.MediaWriter
-#  - org.freedesktop.Platform.ffmpeg-full
+  - org.freedesktop.Platform.ffmpeg-full
+  - org.gnome.boxes
   - org.mozilla.firefox
   - org.telegram.desktop
 
