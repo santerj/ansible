@@ -1,0 +1,31 @@
+---
+- name: install layered packages
+  community.general.rpm_ostree_pkg:
+    name: "{{ rpm_ostree_packages }}"
+    state: present
+  become: true
+
+#- name: create toolbox
+#  shell:
+#    cmd: "toolbox -y create main"
+#
+#- name: run dnf update inside toolbox
+#  shell:
+#    cmd: "toolbox run -c main sudo dnf update -y"
+#
+#- name: install dnf packages inside toolbox
+#  shell:
+#    cmd: "toolbox run -c main sudo dnf install -y {{ item }}"
+#  loop: "{{ dnf_packages }}"
+
+- name: Add flathub repo
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: "{{ flathub_url }}"
+    method: user
+
+- name: Install flatpak programs
+  community.general.flatpak:
+    name:  "{{ flatpak_packages }}"
+    method: user
