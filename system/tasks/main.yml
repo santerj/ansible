@@ -32,14 +32,18 @@
   become: true
 
 - name: disable firewalld services
-  # TODO: use ansible.posix.firewalld
-  # bindings are there on silverblue 34
-  shell: "firewall-cmd  --permanent --remove-service={{ firewalld_services_disable }}"
-  become: true
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    state: disabled
+    permanent: yes
+  loop: "{{ firewalld_services_disable }}"
 
 - name: enable firewalld services
-  shell: "firewall-cmd  --permanent --add-service={{ firewalld_services_enable }}"
-  become: true
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    state: enabled
+    permanent: yes
+  loop:	"{{ firewalld_services_enable }}"
 
 - name: restart firewalld
   systemd:
