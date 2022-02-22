@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  connection: local
+  become_method: sudo
+
+  tasks:
+    - name: Bootstrap system
+      include_role:
+        name: system
+    - name: Install packages
+      include_role:
+        name: packages
+    - name: Setup user
+      include_role:
+        name: user
+
