@@ -1,0 +1,50 @@
+---
+rpm_ostree_packages:
+  - borgbackup
+  - gnome-extensions-app
+  - gnome-shell-extension-gsconnect
+  - gnome-shell-extension-user-theme
+  - gnome-tweaks
+  - gparted
+  - nautilus-python
+
+dnf_packages:
+  - ansible
+  - bpytop
+  - curl
+  - catimg
+  - ffmpeg
+  - git
+  - go
+  - gzip
+  - less
+  - make
+  - ripgrep
+  - rsync
+  - speedtest-cli
+  - tree
+  - unzip
+  - vim
+  - wget
+  - whois
+  - youtube-dl
+  - zsh
+  - zsh-syntax-highlighting
+
+flatpak_packages:
+  - com.discordapp.Discord
+  - com.spotify.Client
+  - com.visualstudio.code
+  - org.fedoraproject.MediaWriter
+  - org.freedesktop.Platform.ffmpeg-full/x86_64/20.08
+  - org.gnome.boxes
+  - org.mozilla.firefox
+  - org.telegram.desktop
+
+flathub_url: "https://dl.flathub.org/repo/flathub.flatpakrepo"
+
+unknown_packages:
+  - ffmpeg
+  - fedora-workstation-repositories
+  - zathura
+  - zathura-pdf-mupdf

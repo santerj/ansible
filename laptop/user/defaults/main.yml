@@ -1,0 +1,25 @@
+username: santeri
+gecos: santeri
+user_groups: wheel
+shell: /bin/bash
+home_prefix: /var/home
+
+home_present:
+  - bin
+  - dl
+  - etc
+  - etc/desktop
+  - etc/documents
+  - img
+  - repos
+  - temp
+
+home_absent:
+  - Desktop
+  - Documents
+  - Downloads
+  - Music
+  - Pictures
+  - Public
+  - Templates
+  - Videos

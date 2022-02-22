@@ -1,0 +1,93 @@
+- name: ensure that user is present and has right groups
+  user:
+    state: present
+    name: "{{ username }}"
+    comment: "{{ gecos }}"
+    groups: "{{ user_groups }}"
+    shell: "{{ shell }}"
+    append: yes
+
+- name: remove default home directories
+  file:
+    path: "/home/{{ username }}/{{ item }}"
+    state: absent
+  loop: "{{ home_absent }}"
+
+- name: create new home directories
+  file:
+    path: "/home/{{ username }}/{{ item }}"
+    state: directory
+    owner: "{{ username }}"
+    group:  "{{ username }}"
+    mode: "0755"
+  loop: "{{ home_present }}"
+
+- name: create .ssh directory
+  file:
+    path: "/home/{{ username }}/.ssh"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0700"
+
+- name: create id_rsa
+  file:
+    path: "/home/{{ username }}/.ssh/id_rsa"
+    state: touch
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0600"
+
+- name: create id_rsa.pub
+  file:
+    path: "/home/{{ username }}/.ssh/id_rsa.pub"
+    state: touch
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0700"
+
+- name: copy .bash_profile
+  copy:
+    src: .bash_profile
+    dest: "/home/{{ username }}/.bash_profile"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0755"
+    backup: yes
+
+- name: copy .bashrc
+  copy:
+    src: .bashrc
+    dest: "/home/{{ username }}/.bashrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0755"
+    backup: yes
+
+- name: copy .vimrc
+  copy:
+    src: .vimrc
+    dest: "/home/{{ username }}/.vimrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0755"
+    backup: yes
+
+- name: copy .zshrc
+  copy:
+    src: .zshrc
+    dest: "/home/{{ username }}/.zshrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0755"
+    backup: yes
+
+- name: copy user-dirs.dirs
+  copy:
+    src: user-dirs.dirs
+    dest: "/home/{{ username }}/.config/user-dirs.dirs"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0755"
+    backup: yes
+  notify: run xdg-user-dirs-update

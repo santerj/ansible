@@ -1,0 +1,53 @@
+- name: set hostname
+  hostname:
+    name: "{{ hostname }}"
+    use: systemd  
+
+- name: ensure that wheel group exists
+  group:
+    name: wheel
+    state: present
+  become: true
+
+- name: ensure nopasswd for wheel
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+  become: true
+
+- name: disable sshd
+  systemd:
+    name: sshd
+    state: stopped
+    enabled: no
+  become: true
+
+- name: enable SELinux
+  ansible.posix.selinux:
+    policy: targeted
+    state: enforcing
+  become: true
+
+- name: disable firewalld services
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    state: disabled
+    permanent: yes
+  loop: "{{ firewalld_services_disable }}"
+
+- name: enable firewalld services
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    state: enabled
+    permanent: yes
+  loop:	"{{ firewalld_services_enable }}"
+
+- name: restart firewalld
+  systemd:
+    name: firewalld
+    state: restarted
+    enabled: yes
+  become: true
