@@ -1,0 +1,12 @@
+---
+rpm_packages_present:
+  - curl
+  - gzip
+  - less
+  - ripgrep
+  - rsync
+  - speedtest-cli
+  - tree
+  - unzip
+  - vim
+  - wget
