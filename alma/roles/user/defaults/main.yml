@@ -1,0 +1,7 @@
+username: santeri
+gecos: santeri
+user_groups: wheel
+shell: /bin/bash
+
+ssh_key_url: "https://raw.githubusercontent.com/santerj/me/main/authorized_keys"
+bashrc_url: "https://raw.githubusercontent.com/santerj/tilde/main/.bashrc"
