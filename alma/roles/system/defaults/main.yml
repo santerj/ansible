@@ -1,0 +1,8 @@
+---
+hostname: alma
+
+# as of now, there is no sane way to declare multiple values here
+firewalld_services_enable: 
+  - ssh
+firewalld_services_disable:
+  - cockpit
