@@ -1,5 +1,8 @@
 # Minimal bootstrap for RHEL8-compatible OS
 
+Run with:
+## `ansible-playbook playbook.yml -i hosts`
+
 Contents:
   - Create admin user + install SSH key
   - Install + update packages
