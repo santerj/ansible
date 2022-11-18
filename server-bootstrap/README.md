@@ -9,3 +9,8 @@ Contents:
   - Configure wheel group + sudo rules
   - Configure hostname
   - Configure sshd + firewalld
+
+TODO maybe 🤔:
+  - fail2ban
+  - login-police
+  - figure out what to do with selinux
