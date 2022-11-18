@@ -1,0 +1,4 @@
+[qa]
+localhost:2222
+
+[prod]
