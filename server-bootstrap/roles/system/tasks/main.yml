@@ -1,72 +1,10 @@
 ---
-- name: set hostname
+- name: Set hostname
   ansible.builtin.hostname:
     name: "{{ hostname }}"
     use: systemd
 
-- name: Ensure wheel
-  ansible.builtin.group:
-    name: wheel
-    state: present
-
-- name: Disable firewalld services
-  ansible.posix.firewalld:
-    service: "{{ item }}"
-    state: disabled
-    permanent: yes
-  loop: "{{ firewalld_services_disable }}"
-  notify: Restart firewalld
-
-- name: Enable firewalld services
-  ansible.posix.firewalld:
-    service: "{{ item }}"
-    state: enabled
-    permanent: yes
-  loop:	"{{ firewalld_services_enable }}"
-  notify: Restart firewalld
-
-- name: Restart firewalld
-  ansible.builtin.systemd:
-    name: firewalld
-    state: restarted
-
-- name: Set SELinux to permissive state
-  ansible.posix.selinux:
-    policy: targeted
-    state: permissive
-  become: true
-
-- name: Allow passwordless sudo for wheel
-  ansible.builtin.lineinfile:
-    dest: /etc/sudoers
-    state: present
-    regexp: "^%wheel"
-    line: "%wheel ALL=(ALL) NOPASSWD: ALL"
-    validate: "visudo -cf %s"
-
-- name: Disable root SSH login
-  ansible.builtin.lineinfile:
-    dest: /etc/ssh/sshd_config 
-    regexp: "^PermitRootLogin"
-    line: "PermitRootLogin no"
-    state: present
-
-- name: Disable SSH password authentication
-  ansible.builtin.lineinfile:
-    dest: /etc/ssh/sshd_config 
-    regexp: "^PasswordAuthentication" 
-    line: "PasswordAuthentication no"
-    state: present
-
-- name: Allow SSH public key authentication
-  ansible.builtin.lineinfile:
-    dest: /etc/ssh/sshd_config
-    regexp: "^PubKeyAuthentication"
-    line: "PubkeyAuthentication yes"
-    state: present
-  notify: Restart sshd
-
-- name: Restart sshd
-  ansible.builtin.systemd:
-    name: sshd
-    state: restarted
+- ansible.builtin.include_tasks: groups.yml
+- ansible.builtin.include_tasks: firewalld.yml
+- ansible.builtin.include_tasks: selinux.yml
+- ansible.builtin.include_tasks: sshd.yml

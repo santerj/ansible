@@ -1,0 +1,19 @@
+---
+- name: Disable firewalld services
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    state: disabled
+    permanent: yes
+  loop: "{{ firewalld_services_disable }}"
+
+- name: Enable firewalld services
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    state: enabled
+    permanent: yes
+  loop:	"{{ firewalld_services_enable }}"
+
+- name: Restart firewalld
+  ansible.builtin.systemd:
+    name: firewalld
+    state: restarted

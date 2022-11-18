@@ -1,11 +1,13 @@
 ---
 rpm_packages_present:
   - curl
+  - firewalld
   - gzip
   - less
-  - ripgrep
+  - net-tools
+#  - ripgrep
   - rsync
-  - speedtest-cli
+#  - speedtest-cli
   - tree
   - unzip
   - vim

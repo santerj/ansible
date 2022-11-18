@@ -21,7 +21,6 @@
     dest: "/home/{{ username }}/.ssh/authorized_keys"
     owner: "{{ username }}"
     group: "{{ username }}"
-    state: file
     mode: "0600"
 
 - name: Install shell configs
@@ -30,5 +29,4 @@
     dest: "/home/{{ username }}/.bashrc"
     owner: "{{ username }}"
     group: "{{ username }}"
-    state: file
     mode: "0755"
