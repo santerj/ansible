@@ -10,7 +10,6 @@ Contents:
   - Configure hostname
   - Configure sshd + firewalld
 
-TODO maybe 🤔:
-  - fail2ban
-  - login-police
+TODO 🤔:
+  - [login-police](https://github.com/santerj/login-police)
   - figure out what to do with selinux
